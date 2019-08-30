@@ -12,10 +12,8 @@ class Connection {
         password: password,
         database: 'Basketball-app'
       })
-
       return this.pool
     }
-
     return this.pool
   }
 }
