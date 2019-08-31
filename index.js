@@ -1,12 +1,17 @@
 const express = require('express')
-const app = express()
-const members = require('./routers/members')
-const port = process.env.PORT || 4001
 const bodyParser = require('body-parser')
+const membersRouter = require('./routers/members')
+const authRouter = require('./routers/auth');
+const { logger } = require('./middleware')
+
+const app = express()
+const port = process.env.PORT || 4001
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(members)
+app.use(logger)
+app.use('/members', membersRouter)
+app.use('/auth', authRouter)
 
 app.get('/', (req, res) => {
   res.send('Welcome to my Basketball-app server!')

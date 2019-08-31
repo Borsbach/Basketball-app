@@ -20,9 +20,9 @@ const getMemberById = (req, res) => {
 }
 
 const createMember = (req, res) => {
-  const { username, email, phone, picture } = req.body
-  let sql = "INSERT INTO members (username, email, phone, picture) VALUES (?, ?, ?, ?)"
-  sql = mysql.format(sql, [ username, email, phone, picture ])
+  const { first_name, last_name, email, phone, picture } = req.body
+  let sql = "INSERT INTO members (first_name, last_name, email, phone, picture) VALUES (?, ?, ?, ?, ?)"
+  sql = mysql.format(sql, [ first_name, last_name, email, phone, picture ])
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
@@ -31,9 +31,9 @@ const createMember = (req, res) => {
 }
 
 const updateMemberById = (req, res) => {
-  const { username, email, phone, picture } = req.body
-  let sql = "UPDATE members SET username = ?, email = ?, phone = ?, picture = ? WHERE id = ?"
-  sql = mysql.format(sql, [ username, email, phone, picture, req.params.id ])
+  const { first_name, last_name, email, phone, picture } = req.body
+  let sql = "UPDATE members SET first_name = ?, last_name = ?, email = ?, phone = ?, picture = ? WHERE id = ?"
+  sql = mysql.format(sql, [ first_name, last_name, email, phone, picture, req.params.id ])
 
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
